@@ -1,0 +1,7 @@
+Hola <%= params[:user].email %>,
+
+Alguien solicito reestabecler tu contrasena. 
+
+Si fuiste tu, da clik para restablecer tu contrasena. El link expirara en 15 minutos
+
+<%= password_reset_edit_url(token: @token) %>

@@ -1,0 +1,20 @@
+<h1> Inicia sesión </h1>
+
+<%= form_with url: sign_in_path do |form| %>
+
+    <div class="mb-3">
+        <%= form.label :email %>
+        <%= form.text_field :email, class: "form-control", placeholder: "steve@gmail.com" %>
+    </div>
+
+    <div class="mb-3">   
+        <%= form.label :Contraseña %>
+        <%= form.password_field :password, class: "form-control", placeholder: "contraseña" %>
+        <%= link_to "Olvidaste tu contraseña", password_reset_path %>
+    </div>
+
+    <div class="mb-3">
+    <%= form.submit "Iniciar sesión" %>
+</div
+<% end %>
+
