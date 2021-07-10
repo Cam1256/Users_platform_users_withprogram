@@ -1,13 +1,14 @@
 
 class RegistrationsController < ApplicationController
         def new
-            @user = User.new
+            @estudiante = Estudiante.new
+
         end
 
         def create
-            @user =User.new(user_params)
-            if @user.save
-                session[:user_id] = @user.id
+            @estudiante =Estudiante.new(estudiante_params)
+            if @estudiante.save
+                session[:estudiante_id] = @estudiante.id
                 redirect_to root_path, notice: "Cuenta creada exitósamente"
             else
                 
@@ -18,8 +19,8 @@ class RegistrationsController < ApplicationController
 
         private
 
-        def user_params
-            params.require(:user).permit(:email, :password, :password_confirmation)
+        def estudiante_params
+            params.require(:estudiante).permit(:nombre, :apellido, :identificacion, :email, :password, :password_confirmation, :programa)
         end
             
     end

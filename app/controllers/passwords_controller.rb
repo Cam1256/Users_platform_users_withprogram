@@ -1,12 +1,12 @@
 class PasswordsController < ApplicationController
 
-    before_action :require_user_logged_in!
+    before_action :require_estudiante_logged_in!
 
     def edit
     end
 
     def update
-        if Current.user.update(password_params)
+        if Current.estudiante.update(password_params)
             redirect_to root_path, notice: "Contraseña cambiada exitósamente"
 
         else
@@ -17,6 +17,6 @@ class PasswordsController < ApplicationController
     private 
 
     def password_params
-        params.require(:user).permit(:password, :password_confirmation)
+        params.require(:estudiante).permit(:password, :password_confirmation)
     end 
 end 

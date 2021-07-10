@@ -1,14 +1,32 @@
 <h1>Regístrate</h1>
 
-<%= form_with model: @user, url: sign_up_path do |form| %>
+<%= form_with model: @estudiante, url: sign_up_path do |form| %>
 
     <% if form.object.errors.any? %>
         <div class="alert alert-danger">
             <% form.object.errors.full_messages.each do |message| %>
-                <div><%= message %> </div>
+                <><%= message %> </div>
             <% end %>
         </div>
     <% end %>
+
+<div class="mb-3">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, class: "form-control", placeholder: "Escribe tu nombre" %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :apellido %>
+    <%= form.text_field :apellido, class: "form-control", placeholder: "Escribe tu apellido" %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :identificación %>
+    <%= form.text_field :identificacion, class: "form-control", placeholder: "Escribe tu número de identificación" %>
+</div>
+
+
+
 <div class="mb-3">
     <%= form.label :email %>
     <%= form.text_field :email, class: "form-control", placeholder: "steve@gmail.com" %>
@@ -24,6 +42,14 @@
     <%= form.password_field :password_confirmation, class: "form-control", placeholder: "confirmación de contraseña" %>
 </div>
 
+<div class="field">
+    <p><%= form.label :programa, "Programa:" %></p>
+    <%= form.select :programa, ['Mercadeo y Comercio Electrónico','Administración de Empresas y de Servicio','Administración de Recursos Humanos y Relaciones Laborales'], { :include_blank => 'Selecciona tu programa de interés' }, :required => true %>
+
+</div>
+
+<br>
+<br>
 <div class="mb-3">
     <%= form.submit "Crear usuario en plataforma" %>
 </div>

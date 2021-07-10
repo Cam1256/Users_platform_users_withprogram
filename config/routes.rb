@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
   root to: "main#index"
 
-  get "campus", to: "campus#index"
+  get "campusadmin", to: "campusadmin#index"
+  
+  
 
   get "password/reset", to: "password_resets#new"
   post "password/reset", to: "password_resets#create"

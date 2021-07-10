@@ -3,9 +3,9 @@ class PasswordResetsController < ApplicationController
     end
 
     def create
-        @user = User.find_by(email: params[:email])
-        if @user.present?
-            PasswordMailer.with(user: @user).reset.deliver_now
+        @estudiante = Estudiante.find_by(email: params[:email])
+        if @estudiante.present?
+            PasswordMailer.with(estudiante: @estudiante).reset.deliver_now
             
         end
         redirect_to root_path, notice: "Si la cuenta de usuario fué encontrada, te enviaremos un link para restablecer tu contraseña"
@@ -14,14 +14,14 @@ class PasswordResetsController < ApplicationController
     end
 
     def edit
-        @user = User.find_signed(params[:token], purpose: "password_reset")
+        @estudiante = Estudiante.find_signed(params[:token], purpose: "password_reset")
     rescue ActiveSupport::MessageVerifier::InvalidSignature
         redirect_to sign_in_path, alert: "Your token has expired. Please try again"
     end 
 
     def update
-        @user = User.find_signed(params[:token], purpose: "password_reset")
-        if @user.update(password_params)
+        @estudiante = Estudiante.find_signed(params[:token], purpose: "password_reset")
+        if @estudiante.update(password_params)
             redirect_to sign_in_path, notice: "Tu contraseña fué cambiada correctamente, por favor ingresa a la plataforma"
 
 
@@ -32,6 +32,6 @@ class PasswordResetsController < ApplicationController
     
     private
     def password_params
-        params.require(:user).permit(:password, :password_confirmation)
+        params.require(:estudiante).permit(:password, :password_confirmation)
     end
 end
